@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">My To-Do List</h1>
+
+    <!-- Form to add new tasks -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form action="/add" method="POST" class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" name="task" placeholder="Enter new task" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <input type="date" name="start_date" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <input type="date" name="end_date" class="form-control" required>
+                </div>
+                <div class="col-md-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Display tasks -->
+    <div class="card shadow-sm fade-in">
+        <div class="card-header bg-primary text-black">Tasks</div>
+        <ul class="list-group list-group-flush">
+            {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center task-item">
+                <div style="color:red;">
+                    <strong>Task:</strong> {{ task.name }}<br>
+                    <small><strong>Start Date:</strong> {{ task.start_date }}</small><br>
+                    <small><strong>End Date:</strong> {{ task.end_date }}</small>
+                </div>
+                <a href="{{ url_for('delete_task', task_index=loop.index0) }}" class="btn btn-sm btn-danger task-delete-btn">Delete</a>
+            </li>
+            {% else %}
+            <li class="list-group-item text-muted text-center">No tasks yet!</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Footer with extra spacing -->
+<footer class="footer mt-5 pt-4 pb-4">
+    <div class="container text-center">
+        <p>&copy; 2024 BrandName. All Rights Reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a> |
+            <a href="#">Contact Us</a>
+        </p>
+    </div>
+</footer>
+
+<style>
+    /* Background image */
+    body {
+        background-image: url("{{ url_for('static', filename='8.jpg') }}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    /* Container */
+    .container {
+        max-width: 600px;
+    }
+
+    /* Card styling */
+    .card {
+        border-radius: 0.5rem;
+    }
+
+    /* Header styling */
+    h1 {
+        font-weight: 700;
+        color: #333;
+    }
+
+    /* Task list items */
+    .task-item {
+        color:#000;
+        transition: background-color 0.3s;
+    }
+    .task-item:hover {
+        background-color: #f0f8ff;
+    }
+
+    /* Delete button hover */
+    .task-delete-btn {
+        transition: transform 0.2s ease;
+    }
+    .task-delete-btn:hover {
+        transform: scale(1.1);
+    }
+
+    /* Fade-in effect for the tasks list */
+    .fade-in {
+        opacity: 0;
+        animation: fadeInAnimation ease 1.5s;
+        animation-fill-mode: forwards;
+    }
+
+    /* Footer spacing */
+    .footer {
+        background-color: #1a1a2e;
+        color: #ccc;
+        padding: 30px 0;
+        margin-top: 50px;
+    }
+    .footer a:hover {
+        color: #ffdd57 !important;
+    }
+
+    /* Keyframes for fade-in animation */
+    @keyframes fadeInAnimation {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+</style>
+{% endblock %}

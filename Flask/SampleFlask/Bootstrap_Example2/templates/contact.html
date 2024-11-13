@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+<div class="container">
+ <h1>This is our about page Travel</h1>
+</div>
+    <div class="row">
+        <div class="col">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{ url_for('static', filename='images/5.jpg') }}" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text">
+        Rent Charges
+        1 hour = 100rs
+        2 hours = 500rs
+    </p>
+  </div>
+</div>
+        </div>
+     <div class="col">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="static/images/3.jpg" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text">Some quick example.</p>
+  </div>
+</div>
+     </div><div class="col">
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="static/images/4.jpg" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text">function1.</p>
+  </div>
+</div>
+     </div>
+    </div>
+{% endblock %}

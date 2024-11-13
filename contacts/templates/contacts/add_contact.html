@@ -1,0 +1,8 @@
+<h2>Add Contact</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <label for="recipient_email">Send to Email (Optional):</label>
+    <input type="email" name="recipient_email">
+    <button type="submit">Add Contact</button>
+</form>

@@ -1,0 +1,7 @@
+<h2>Delete Contact</h2>
+<p>Are you sure you want to delete {{ contact.name }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+    <a href="{% url 'view_contacts' %}">Cancel</a>
+</form>
